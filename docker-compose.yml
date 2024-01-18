@@ -75,6 +75,7 @@ services:
     volumes:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro,Z
       - ./logstash/pipeline:/usr/share/logstash/pipeline:ro,Z
+      - ./logstash/jdbc:/usr/share/logstash/jdbc:ro,Z
     ports:
       - 5044:5044
       - 50000:50000/tcp
@@ -108,7 +109,9 @@ services:
 
 networks:
   elk:
+    name: elk
     driver: bridge
+    external: true
 
 volumes:
   elasticsearch:
